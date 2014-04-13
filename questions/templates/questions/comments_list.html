@@ -5,6 +5,7 @@
   <span class="question_info">{{question.user}} | {{ question.create_date|date:"d E Y H:i" }}</span>
   <p>{{question.content}}</p>
 </div>
+<h3>{{object_list.count}} комментариев</h3>
 <ul class="comments">
 {% for comment in object_list %}
     <li>
@@ -13,6 +14,7 @@
     </li>
 {% endfor %}
 </ul>
+
 {% if user.is_authenticated %}
 <form method="post">
 {% csrf_token%}

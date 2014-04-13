@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'questions',
-    'registration'
+    'registration',
+    'social_auth'
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
