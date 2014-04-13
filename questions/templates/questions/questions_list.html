@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<h1>Вопросы пользователей</h1>
 {% if question_list %}
     <ul class="questions_list">
     {% for question in question_list %}
@@ -26,6 +27,6 @@
         </div>
     {% endif %}
 {% else %}
-    <p>No questions are available.</p>
+    <p>Никто еще не задал вопрос. Вы можете быть <a href="/questions/create/">первым</a></p>
 {% endif %}
 {% endblock %}
