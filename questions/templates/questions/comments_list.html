@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="questions_detail">
+  <h1>{{ question.title }}</h1>
+  <span class="question_info">{{question.user}} | {{ question.create_date|date:"d E Y H:i" }}</span>
+  <p>{{question.content}}</p>
+</div>
+<ul class="comments">
+{% for comment in object_list %}
+    <li>
+        <span class="comment_info">{{comment.user}} | {{ comment.create_date|date:"d E Y H:i" }}</span>
+        <p>{{comment.content}}</p>
+    </li>
+{% endfor %}
+</ul>
+{% if user.is_authenticated %}
+<form method="post">
+{% csrf_token%}
+{% for field in form %}
+{{field.label_tag}}<br>
+{{field}}<br>
+{{field.errors}}
+{% endfor %}
+<input type="hidden" name="pk" value="{{question.id}}"/>
+<input type="submit" value="Комментировать" />
+</form>
+{%else%}
+<span class="comment_info">Вы не можете оставить комментарий. <a href="/registration/login">Войдите</a> или <a href="/registration/register">зарегистрируйтесь</a></span>
+{%endif%}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(document).on('submit','form',function(){
+      $.post(location.href,$('form').serialize(),function(data){
+        console.log(data)
+        if(data){
+          var new_comm = $('<li>');
+          var info = $('<span>').addClass('comment_info').text(data.user+' | ' + data.create_date)
+          var p = $('<p>').text(data.content)
+          new_comm.append(info).append(p)
+          $('.comments').append(new_comm)
+        }
+      })
+      return false;
+    })
+  })
+</script>
+{% endblock %}

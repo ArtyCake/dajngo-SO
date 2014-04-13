@@ -20,6 +20,7 @@ header{
   background: #0F0F0F;
   border-radius: 0 0 3px 3px;
   padding: 0 10px;
+  line-height: 35px;
 }
 .username {
   font-size: 16px;
@@ -77,10 +78,16 @@ a:hover{
   margin: 0;
 }
 .logo {
-color: #FFF;
-font-weight: bold;
-text-decoration: none;
-margin-left: 30px;
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 30px;
+  display: inline-block;
+  height: 35px;
+  background: #0F0F0F;
+  padding: 0 10px;
+  line-height: 35px;
+  border-radius: 0 0 3px 3px;
 }
 .questions_detail{
   border-bottom: 1px solid #ccc;
