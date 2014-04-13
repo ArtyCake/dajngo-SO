@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Project</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+    </head>
+
+    <body>
+      <header>
+      <div class="w_960">
+      <a class="logo" href="/questions/">
+        TEST APP
+      </a>
+          <div class="user_head">
+        {% if user.is_authenticated %}
+        <span class="username">{{user.username}}</span><a href="/registration/logout">выйти</a>
+        {% else %}
+          <a class="head_btn" href="/registration/register">Регистрация</a>
+          <a class="head_btn" href="/registration/login">Вход</a>
+        {% endif %}
+        </div>
+        </div>
+      </header>
+    <div class="w_960">
+    <div class="new_question_btn">
+    <a class="btn" href="{% if user.is_authenticated %} /questions/create {% else %}  /registration/login {% endif %}" >Задать вопрос</a>
+    </div>
+    <div class="content">
+    {% block content %}{% endblock %}
+    </div>
+
+    </div>
+    </body>
+</html>

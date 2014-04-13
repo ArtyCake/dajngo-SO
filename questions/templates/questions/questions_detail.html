@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="questions_detail">
+  <h1>{{ question.title }}</h1>
+  <span class="question_info">{{question.user}} | {{ question.create_date|date:"d E Y H:i" }}</span>
+  <p>{{question.content}}</p>
+</div>
+<ul>
+{% for comment in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

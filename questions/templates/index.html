@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% if question_list %}
+    <ul class="questions_list">
+    {% for question in question_list %}
+        <li>
+          <a href="{% url 'questions:detail' question.id %}">{{ question.title }}</a><br>
+          <span class="question_info">{{question.user}} | {{ question.create_date|date:"d E Y H:i" }}</span>
+          <p>{{question.content| truncatewords:3}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+{% endblock %}

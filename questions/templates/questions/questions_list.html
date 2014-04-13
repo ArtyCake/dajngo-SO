@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+{% if question_list %}
+    <ul class="questions_list">
+    {% for question in question_list %}
+        <li>
+          <a href="/questions/{{question.id}}/">{{ question.title }}</a><br>
+          <span class="question_info">{{question.user}} | {{ question.create_date|date:"d E Y H:i" }}</span>
+          <p>{{question.content| truncatechars:100}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/questions?page={{ page_obj.previous_page_number }}">Пред.</a>
+                {% endif %}
+                <span class="page-current">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/questions?page={{ page_obj.next_page_number }}">След.</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+{% endblock %}
